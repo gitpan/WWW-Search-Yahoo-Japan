@@ -10,8 +10,8 @@ BEGIN { use_ok('WWW::Search::Yahoo::Japan') };
 my $iDebug = 0;
 my $iDump = 0;
 
-goto TEST_NOW;
-goto MULTI_TEST;
+# goto TEST_NOW;
+# goto MULTI_TEST;
 
 # This test returns no results (but we should not get an HTTP error):
 diag("Sending 0-page query...");
@@ -45,6 +45,7 @@ $iDump = 0;
 &tm_run_test('normal', "\xCB\xBD", 111, undef, $iDebug, $iDump);
 
 ALL_DONE:
+pass;
 exit 0;
 
 __END__

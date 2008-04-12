@@ -17,6 +17,6 @@ no_index:
     - t
 requires:
   Data::Dumper: 0
-  WWW::Search::Yahoo: 0
+  WWW::Search::Yahoo: 2.377
   perl: 5.004
-version: 2.1
+version: 2.101

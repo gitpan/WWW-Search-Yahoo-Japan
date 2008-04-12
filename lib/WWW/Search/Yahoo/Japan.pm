@@ -1,5 +1,5 @@
 
-# $Id: Japan.pm,v 1.2 2008/03/31 03:55:12 Martin Exp $
+# $Id: Japan.pm,v 1.3 2008/04/12 03:52:24 Martin Exp $
 
 =head1 NAME
 
@@ -38,20 +38,14 @@ use strict;
 use warnings;
 
 use Data::Dumper;  # for debugging only
-use WWW::Search::Yahoo 2.372;
+use WWW::Search::Yahoo 2.377;
 use base 'WWW::Search::Yahoo';
 
 our
-$VERSION = do { my @r = (q$Revision: 1.2 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
+$VERSION = do { my @r = (q$Revision: 1.3 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
 our $MAINTAINER = 'Martin Thurn <mthurn@cpan.org>';
 
-=head2 native_setup_search
-
-This is part of the basic WWW::Search mechanism.
-
-=cut
-
-sub native_setup_search
+sub _native_setup_search
   {
   my ($self, $sQuery, $rh) = @_;
   $self->{'_options'} = {
@@ -63,8 +57,8 @@ sub native_setup_search
                         };
   $rh->{'search_base_url'} = 'http://search.yahoo.co.jp';
   $rh->{'search_base_path'} = '/search';
-  return $self->SUPER::native_setup_search($sQuery, $rh);
-  } # native_setup_search
+  return $self->SUPER::_native_setup_search($sQuery, $rh);
+  } # _native_setup_search
 
 sub _where_to_find_count
   {
@@ -79,7 +73,7 @@ sub _string_has_count
   {
   my $self = shift;
   my $s = shift;
-  return $1 if ($s =~ m{([,0-9]+)ä»¶\s+-\s+}i);
+  return $1 if ($s =~ m{([,0-9]+)Ã¤Â»Â¶\s+-\s+}i);
   return $1 if ($s =~ m{([,0-9]+)\344\273\266\s+-\s+}i);
   return $1 if ($s =~ m{([,0-9]+)&auml;&raquo;&para;\s+-\s+}i);
   return -1;
@@ -112,9 +106,10 @@ sub _a_is_next_link
   my $oA = shift;
   return 0 unless (ref $oA);
   my $s = $oA->as_text;
-  return 1 if ($s =~ m!次へ!i);
-  return 1 if ($s =~ m!次\343\201\270!i);
-  return 1 if ($s =~ m!次&atilde;&#129;&cedil;!i);
+  return 1 if ($s =~ m!æ¬¡ã¸!i);
+  return 1 if ($s =~ m!æ¬¡\343\201\270!i);
+  return 1 if ($s =~ m!\346\254\241\343\201\270!i);
+  return 1 if ($s =~ m!æ¬¡&atilde;&#129;&cedil;!i);
   } # _a_is_next_link
 
 =head2 parse_details
