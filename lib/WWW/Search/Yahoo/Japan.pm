@@ -1,9 +1,9 @@
 
-# $Id: Japan.pm,v 1.3 2008/04/12 03:52:24 Martin Exp $
+# $Id: Japan.pm,v 1.7 2008/05/04 13:33:54 Martin Exp $
 
 =head1 NAME
 
-WWW::Search::Yahoo::Japan - class for searching Yahoo! Japan
+WWW::Search::Yahoo::Japan - WWW::Search backend for searching Yahoo! Japan
 
 =head1 SYNOPSIS
 
@@ -42,7 +42,7 @@ use WWW::Search::Yahoo 2.377;
 use base 'WWW::Search::Yahoo';
 
 our
-$VERSION = do { my @r = (q$Revision: 1.3 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
+$VERSION = do { my @r = (q$Revision: 1.7 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
 our $MAINTAINER = 'Martin Thurn <mthurn@cpan.org>';
 
 sub _native_setup_search
@@ -152,7 +152,10 @@ Please tell the maintainer if you find any!
 
 =head1 AUTHOR
 
-C<WWW::Search::Yahoo::Japan> is maintained by Martin Thurn
-(mthurn@cpan.org).
+Martin Thurn <mthurn@cpan.org>
+
+=head1 LICENSE
+
+This module is licensed under the same terms as Perl itself.
 
 =cut

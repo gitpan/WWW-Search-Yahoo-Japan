@@ -1,13 +1,10 @@
 
-# $Id: Makefile.PL,v 1.3 2008/04/12 03:30:21 Martin Exp $
+# $Id: Makefile.PL,v 1.5 2008/05/04 13:34:32 Martin Exp $
 
 use inc::Module::Install;
 
-name('WWW-Search-Yahoo-Japan');
-version(2.101);
-
-author('Martin Thurn <mthurn@cpan.org>');
-license('perl');
+all_from('lib/WWW/Search/Yahoo/Japan.pm');
+version(2.102);
 
 requires( perl => '5.004' );
 requires('Data::Dumper');
