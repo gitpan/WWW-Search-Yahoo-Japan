@@ -1,5 +1,5 @@
 
-# $Id: Japan.pm,v 1.7 2008/05/04 13:33:54 Martin Exp $
+# $Id: Japan.pm,v 1.8 2008/12/25 18:55:43 Martin Exp $
 
 =head1 NAME
 
@@ -42,7 +42,7 @@ use WWW::Search::Yahoo 2.377;
 use base 'WWW::Search::Yahoo';
 
 our
-$VERSION = do { my @r = (q$Revision: 1.7 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
+$VERSION = do { my @r = (q$Revision: 1.8 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
 our $MAINTAINER = 'Martin Thurn <mthurn@cpan.org>';
 
 sub _native_setup_search
@@ -87,17 +87,16 @@ sub _result_list_tags_OFF
          );
   } # _result_list_tags
 
+
 sub _result_list_items
   {
   my $self = shift;
   my $oTree = shift || die;
-  my $oDIV = $oTree->look_down(
-                               _tag => 'div',
-                               id => 'yschweb'
-                              );
-  return () if ! ref $oDIV;
-  my @ao = $oDIV->look_down(_tag => 'li');
-  return @ao;
+  my @aoDIV = $oTree->look_down(
+                                _tag => 'div',
+                                class => 'web'
+                               );
+  return @aoDIV;
   } # _result_list_items
 
 sub _a_is_next_link
@@ -111,6 +110,7 @@ sub _a_is_next_link
   return 1 if ($s =~ m!\346\254\241\343\201\270!i);
   return 1 if ($s =~ m!æ¬¡&atilde;&#129;&cedil;!i);
   } # _a_is_next_link
+
 
 =head2 parse_details
 
@@ -126,7 +126,7 @@ sub parse_details
   # Required arg2 = a WWW::SearchResult object to fill in:
   my $hit = shift;
   my $oTR = $oLI->look_down(_tag => 'div',
-                            class => 'yschabstr',
+                            class => 'abs',
                            );
   if (ref $oTR)
     {

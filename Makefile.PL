@@ -1,10 +1,10 @@
 
-# $Id: Makefile.PL,v 1.5 2008/05/04 13:34:32 Martin Exp $
+# $Id: Makefile.PL,v 1.6 2008/12/25 18:55:08 Martin Exp $
 
 use inc::Module::Install;
 
 all_from('lib/WWW/Search/Yahoo/Japan.pm');
-version(2.102);
+version(2.103);
 
 requires( perl => '5.004' );
 requires('Data::Dumper');
